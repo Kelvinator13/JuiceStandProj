@@ -92,7 +92,7 @@ namespace LemonJuiceStand
                 }
                 else if (stringInput == "No" || stringInput == "no" || stringInput == "n")
                 {
-                    Console.WriteLine("By for now!");
+                    Console.WriteLine("Bye for now!");
                     Console.ReadLine();
                     Console.Clear();
                 }
