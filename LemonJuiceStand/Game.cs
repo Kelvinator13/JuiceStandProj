@@ -49,7 +49,7 @@ namespace LemonJuiceStand
             }
             else
             {
-                Console.WriteLine("That input was invalid!");
+                Console.WriteLine("That input is invalid!");
                 Console.ReadLine();
                 createWorld();
             }
@@ -92,7 +92,7 @@ namespace LemonJuiceStand
                 }
                 else if (stringInput == "No" || stringInput == "no" || stringInput == "n")
                 {
-                    Console.WriteLine("Goodbye for now!");
+                    Console.WriteLine("By for now!");
                     Console.ReadLine();
                     Console.Clear();
                 }
@@ -112,7 +112,7 @@ namespace LemonJuiceStand
                 }
                 else if (stringInput == "No" || stringInput == "no" || stringInput == "n")
                 {
-                    Console.WriteLine("Goodbye for now!");
+                    Console.WriteLine("Bye for now!");
                     Console.ReadLine();
                     Console.Clear();
                 }
@@ -152,14 +152,14 @@ namespace LemonJuiceStand
                 }
                 else if (stringInput == "No" || stringInput == "no" || stringInput == "n")
                 {
-                    Console.WriteLine("Goodbye for now!");
+                    Console.WriteLine("Bye for now!");
                     Console.ReadLine();
                     Console.Clear();
                 }
             }
             else if (userInput == "5")
             {
-                Console.WriteLine("Good bye for now.");
+                Console.WriteLine("Bye for now.");
             }
         }
 

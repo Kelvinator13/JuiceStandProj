@@ -10,14 +10,14 @@ namespace LemonJuiceStand
     {
         public string condition;
         public int temperature;
-        List<string> weatherConditions = new List<string>() { "Sunny", "Overcast", "Partly Cloudy", "Rainy" , "Snowy"};
+        List<string> weatherConditions = new List<string>() { "Sunny", "Overcast", "Windy", "Rainy", "Snowy" };
 
         Random randomNumber = new Random();
 
         public Weather()
         {
             condition = "sunny";
-            temperature = randomNumber.Next(60, 95); 
+            temperature = randomNumber.Next(60, 95);
         }
 
         public void randomizedWeather()
@@ -38,11 +38,16 @@ namespace LemonJuiceStand
                 condition = weatherConditions[2];
                 temperature = randomNumber.Next(36, 54);
             }
-            else if (temporaryInteger  < 35 && temporaryInteger > 0)
+            else if (temporaryInteger < 60 && temporaryInteger > 70)
+            {
+                condition = weatherConditions[3];
+                temperature = randomNumber.Next(40, 59);
+            }
+            else if (temporaryInteger < 35 && temporaryInteger > 0)
             {
                 condition = weatherConditions[4];
                 temperature = randomNumber.Next(0, 34);
             }
+            }
         }
     }
-}
