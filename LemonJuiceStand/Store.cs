@@ -12,5 +12,11 @@ namespace LemonJuiceStand
         public double pricePerSugarCube = .5;
         public double pricePerIceCube = .5;
         public double pricePerCup = .5;
+
+
     }
+  
+    }
+
+
 }

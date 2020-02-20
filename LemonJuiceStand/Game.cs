@@ -9,10 +9,15 @@ namespace LemonJuiceStand
     class Game
     {
         Player player = new Player("LemonMan");
-        Store store = new Store(); 
+        Store store = new Store();
+        Day day = new Day();
         private List<Day> days;
         int currentDay;
         int amountOfDays;
+        int displayPrice, totalPurchases;
+        string myStore;
+        double totalProfit, cupPriceChoice;
+
 
         public void startGame()
         {
@@ -24,7 +29,6 @@ namespace LemonJuiceStand
                 sellLemonade();
                 resultsOfTheDay();
             }
-
         }
 
         public void createWorld()
@@ -80,13 +84,15 @@ namespace LemonJuiceStand
             if (userInput == "1")
             {
                 Console.Write("How many Lemons: ");
-                double input = Convert.ToInt32(Console.ReadLine());
+                int input = Convert.ToInt32(Console.ReadLine());
                 double priceAllTogether = input * store.pricePerLemon;
+                player.wallet.Money -= priceAllTogether; 
                 Console.WriteLine("You spent ${0}", priceAllTogether);
                 Console.Write("Would you like to exit? (Yes or No): ");
-                string stringInput = Console.ReadLine();
+                string stringInput = Console.ReadLine().ToLower();
                 if (stringInput == "Yes" || stringInput == "yes" || stringInput == "Y" || stringInput == "y")
                 {
+                    
                     Console.Clear();
                     visitStore();
                 }
@@ -102,6 +108,7 @@ namespace LemonJuiceStand
                 Console.Write("How many Sugar Cubes: ");
                 double input = Convert.ToInt32(Console.ReadLine());
                 double priceAllTogether = input * store.pricePerSugarCube;
+                player.wallet.Money -= priceAllTogether;
                 Console.WriteLine("You spent ${0}", priceAllTogether);
                 Console.Write("Would you like to exit? (Yes or No): ");
                 string stringInput = Console.ReadLine();
@@ -122,6 +129,7 @@ namespace LemonJuiceStand
                 Console.Write("How many Ice Cubes: ");
                 double input = Convert.ToInt32(Console.ReadLine());
                 double priceAllTogether = input * store.pricePerIceCube;
+                player.wallet.Money -= priceAllTogether;
                 Console.WriteLine("You spent ${0}", priceAllTogether);
                 Console.Write("Would you like to exit? (Yes or No): ");
                 string stringInput = Console.ReadLine();
@@ -142,6 +150,7 @@ namespace LemonJuiceStand
                 Console.Write("How many Cups: ");
                 double input = Convert.ToInt32(Console.ReadLine());
                 double priceAllTogether = input * store.pricePerCup;
+                player.wallet.Money -= priceAllTogether;
                 Console.WriteLine("You spent ${0}", priceAllTogether);
                 Console.Write("Would you like to exit? (Yes or No): ");
                 string stringInput = Console.ReadLine();
@@ -163,19 +172,85 @@ namespace LemonJuiceStand
             }
         }
 
-        public void createLemonade()
+        public static void createLemonade()
         {
-
+            //NEED TO KNOW: HOW MANY LEMONS WILL BE IN PITCHER OF LEMONADE?
+            Console.WriteLine("**********************************");
+            Console.WriteLine("*  DESIGN YOUR LEMONADE BELOW!   *");
+            Console.WriteLine("**********************************");
+            Console.Write("How many lemons will be in the pitcher of lemonade: ");
+            string lemonChoice = Console.ReadLine();
+            //NEED TO KNOW: HOW MANY SUGAR CUBES WILL BE IN PITCHER OF LEMONADE?
+            Console.Write("How many sugar cubes will be in the pitcher of lemonade: ");
+            string sugarChoice = Console.ReadLine();
+            //NEED TO KNOW: HOW MANY ICE CUBES WILL BE IN PITCHER OF LEMONADE?
+            Console.Write("How many ice cubes will be in the pitcher of lemonade: ");
+            string iceChoice = Console.ReadLine();
+            Console.Write("How many ice cubes will be in the pitcher of lemonade: ");
+            cupPriceChoice = Console.ReadLine();
         }
 
         public void sellLemonade()
         {
-
+            //CREATE OUR CUSTOMERS 
+            if (day.weather.condition == "Sunny")
+            {
+                for (int i = 0; i < 80; i++)
+                {
+                    day.customers.Add(new Customer("Customer" + i));
+                }
+            }
+            else if (day.weather.condition == "Overcast")
+            {
+                for (int i = 0; i < 65; i++)
+                {
+                    day.customers.Add(new Customer("Customer" + i));
+                }
+            }
+            else if (day.weather.condition == "Windy")
+            {
+                for (int i = 0; i < 35; i++)
+                {
+                    day.customers.Add(new Customer("Customer" + i));
+                }
+            }
+            else if (day.weather.condition == "Rainy")
+            {
+                for (int i = 0; i < 25; i++)
+                {
+                    day.customers.Add(new Customer("Customer" + i));
+                }
+            }
+            else if (day.weather.condition == "Snowy")
+            {
+                for (int i = 0; i < 15; i++)
+                {
+                    day.customers.Add(new Customer("Customer" + i));
+                }
+            }
+            for (int i = 0; i < day.customers.Count; i++)
+            {
+                if (player.inventory.cups.Count > 0 && day.customers[i].flavorScore > 0)
+                {
+                    totalPurchases++;
+                    player.wallet.Money += cupPriceChoice;
+                    player.inventory.cups.RemoveAt(0);
+                }
+            }
         }
+        
 
         public void resultsOfTheDay()
         {
-
+            //TELL USER THE SCORE 
+            Console.WriteLine("Your total profit for the Day is {0}", totalProfit);
+            Console.WriteLine("Your total purchases: {0}", totalPurchases);
+            Console.WriteLine("The Weather today is: {0}", day.weather.condition);
+            Console.ReadLine();
         }
-    }
+      
+
+
+
+
 }

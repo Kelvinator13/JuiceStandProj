@@ -12,12 +12,22 @@ namespace LemonJuiceStand
         public int temperature;
         List<string> weatherConditions = new List<string>() { "Sunny", "Overcast", "Windy", "Rainy", "Snowy" };
 
+
         Random randomNumber = new Random();
 
         public Weather()
         {
-            condition = "sunny";
+            condition = "Sunny";
             temperature = randomNumber.Next(60, 95);
+        }
+        
+        public static class TemperatureConverter
+        {
+            public static double CelsiusToFahrenheit(double celsius)
+            {
+                double fahrenheit = (celsius * 9 / 5) + 32;
+                return fahrenheit;
+            }
         }
 
         public void randomizedWeather()

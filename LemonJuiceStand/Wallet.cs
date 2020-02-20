@@ -9,6 +9,6 @@ namespace LemonJuiceStand
     class Wallet
     {
         double money;
-        public double Money = 25;
+        public double Money = .25;
     }
 }
